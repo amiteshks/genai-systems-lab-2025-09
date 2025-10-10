@@ -17,7 +17,7 @@ from pymilvus import (
 # Semantic Search Function
 # ---------------------------
 
-def search_similar(query, collection_name="employee_policies", top_k=1):
+def retrieve_similiar_contexts(query, collection_name="employee_policies", top_k=1):
     """
     Given a user query, return top K semantically similar texts from Milvus.
     """
@@ -78,32 +78,32 @@ def generate_answer(query, contexts):
 # Combined RAG Query Pipeline
 # ---------------------------
 
-def retrieve_and_generate_response(query):
-    """
-    Perform full RAG flow: search + LLM answer generation.
-    """
-    top_docs = search_similar(query)
-    contexts = [doc["content"] for doc in top_docs]
-    answer = generate_answer(query, contexts)
+# def retrieve_and_generate_response(query):
+#     """
+#     Perform full RAG flow: search + LLM answer generation.
+#     """
+#     top_docs = search_similar(query)
+#     contexts = [doc["content"] for doc in top_docs]
+#     answer = generate_answer(query, contexts)
 
-    print(" Retrieved Contexts:")
-    for i, c in enumerate(contexts, start=1):
-        print(f"{i}. {c}")
+#     print(" Retrieved Contexts:")
+#     for i, c in enumerate(contexts, start=1):
+#         print(f"{i}. {c}")
 
-    print("\n LLM Answer:")
-    print(answer)
+#     print("\n LLM Answer:")
+#     print(answer)
 
-    return {
-        "query": query,
-        "contexts": contexts,
-        "answer": answer
-    }
+#     return {
+#         "query": query,
+#         "contexts": contexts,
+#         "answer": answer
+#     }
 
 
-# ---------------------------
-# 5. Example Run
-# ---------------------------
-if __name__ == "__main__":
+# # ---------------------------
+# # 5. Example Run
+# # ---------------------------
+# if __name__ == "__main__":
     
-    query = "How often do employees get paid?"
-    retrieve_and_generate_response(query)
+#     query = "How often do employees get paid?"
+#     retrieve_and_generate_response(query)

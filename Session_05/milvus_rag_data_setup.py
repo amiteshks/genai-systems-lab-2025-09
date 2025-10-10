@@ -82,3 +82,4 @@ if __name__ == "__main__":
     print(f"Retrieved {len(results)} records from collection '{COLLECTION_NAME}':\n")
     for r in results:
         print(f"ID: {r['id']} | Content: {r['content']}")
+
